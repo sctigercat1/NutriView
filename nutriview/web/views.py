@@ -85,7 +85,7 @@ def analysis(request):
             for parent in item['Parents']:
                 if parent['Name'] == 'Food' and item['Confidence'] > 75:
                     foods.append(item['Name'])
-    return HttpResponse(json.dumps(foods))
+    return HttpResponse(json.dumps(foods) + '<br><br>' + json.dumps(labels))
 
 
     item = request.GET.get('item', 'good')
