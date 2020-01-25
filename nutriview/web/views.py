@@ -6,6 +6,7 @@ import boto3, json
 
 # Create your views here.
 def root(request):
+    """
     session = boto3.Session(
         aws_access_key_id=settings.AWS_SERVER_PUBLIC_KEY,
         aws_secret_access_key=settings.AWS_SERVER_SECRET_KEY,
@@ -23,7 +24,9 @@ def root(request):
             for parent in item['Parents']:
                 if parent['Name'] == 'Food' and item['Confidence'] > 75:
                     foods.append(item['Name'])
-
+    """
+    foods = ["Burger", "Fries"]
+    
     for food in foods:
         pass
 
