@@ -9,10 +9,10 @@ def root_old(request):
 
     """
     foods = ["Pizza"]
-    
+
     # POST request to FDA site
     fda_endpoint = "https://api.nal.usda.gov/fdc/v1/search?api_key=" + settings.FDA_API_KEY
-    
+
     for food in foods:
         #post_data = urllib.parse.urlencode({'generalSearchInput': food})
         data = json.dumps({'generalSearchInput': food}).encode()
@@ -66,7 +66,7 @@ def analysis(request):
     cv2.imwrite('file.png',image)
     is_success, buffer = cv2.imencode(".jpg", image)
     io_buf = io.BytesIO(buffer)
-    
+
     session = boto3.Session(
         aws_access_key_id=settings.AWS_SERVER_PUBLIC_KEY,
         aws_secret_access_key=settings.AWS_SERVER_SECRET_KEY,
@@ -93,3 +93,6 @@ def analysis(request):
 
 def theme_index(request):
     return render(request, "theme_index.html")
+
+def nutri(request):
+    return render(request, "nutrition.html")
