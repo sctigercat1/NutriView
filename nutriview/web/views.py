@@ -54,7 +54,7 @@ def feed(request):
     except HttpResponseServerError as e:
         print("aborted")
 
-def root(request):
+def snap(request):
     return render(request, "main.html")
 
 import numpy as np
@@ -91,7 +91,7 @@ def analysis(request):
     item = request.GET.get('item', 'good')
     return HttpResponse(item)
 
-def theme_index(request):
+def root(request):
     return render(request, "theme_index.html")
 
 def nutri(request):

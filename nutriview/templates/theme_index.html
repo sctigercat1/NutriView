@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="overflow-y: hidden;">
 
 <head>
   <meta charset="utf-8">
@@ -31,10 +31,10 @@
       <div class="row align-items-center">
         <div class="col-sm-6">
           <h1>NutriView</h1>
-          <p><a href="#" class="btn btn-outline-white">Get started</a></p>
+          <p><a href="/snap" class="btn btn-outline-white">Get started</a></p>
         </div>
         <div class="col-sm-6">
-          <img src="{% static 'img/food.png' %}">
+          <img class="img-resize" src="{% static 'img/food.png' %}">
         </div>
       </div>
     </div>
