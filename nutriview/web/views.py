@@ -64,6 +64,7 @@ import io
 def analysis(request):
     camera = cv2.VideoCapture(0)
     return_value, image=camera.read()
+    cv2.imwrite('file.png',image)
     #img = np.ones((100, 100), np.uint8)
     is_success, buffer = cv2.imencode(".jpg", image)
     io_buf = io.BytesIO(buffer)
