@@ -2,10 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from nutriview import settings
 
-import boto3, json
+import boto3, json, urllib.request, urllib.parse
 
 # Create your views here.
-def root(request):
+def root_old(request):
     """
     session = boto3.Session(
         aws_access_key_id=settings.AWS_SERVER_PUBLIC_KEY,
@@ -25,9 +25,51 @@ def root(request):
                 if parent['Name'] == 'Food' and item['Confidence'] > 75:
                     foods.append(item['Name'])
     """
-    foods = ["Burger", "Fries"]
+    foods = ["Pizza"]
+    
+    # POST request to FDA site
+    fda_endpoint = "https://api.nal.usda.gov/fdc/v1/search?api_key=" + settings.FDA_API_KEY
     
     for food in foods:
-        pass
+        #post_data = urllib.parse.urlencode({'generalSearchInput': food})
+        data = json.dumps({'generalSearchInput': food}).encode()
+        request = urllib.request.Request(fda_endpoint, data)
+        request.add_header('Content-Type', 'application/json')
+        with urllib.request.urlopen(request) as response:
+            return HttpResponse(response.read())
+            #print(f.read().decode('utf-8'))
+        #response = urllib.request.urlopen(url=fda_endpoint, data=post_data)
 
-    return HttpResponse(json.dumps(foods))
+    # return HttpResponse(json.dumps(foods))
+
+import cv2
+import time
+from django.http import StreamingHttpResponse
+from django.views.decorators import gzip
+
+class VideoCamera(object):
+    def __init__(self):
+        self.video = cv2.VideoCapture(0)
+    def __del__(self):
+        self.video.release()
+
+    def get_frame(self):
+        ret,image = self.video.read()
+        ret,jpeg = cv2.imencode('.jpg',image)
+        return jpeg.tobytes()
+
+def gen(camera):
+    while True:
+        frame = camera.get_frame()
+        yield(b'--frame\r\n'
+        b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
+@gzip.gzip_page
+def feed(request):
+    try:
+        return StreamingHttpResponse(gen(VideoCamera()),content_type="multipart/x-mixed-replace;boundary=frame")
+    except HttpResponseServerError as e:
+        print("aborted")
+
+def root(request):
+    return render(request, "main.html")
