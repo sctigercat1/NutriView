@@ -1,0 +1,6 @@
+cd nutriview
+
+while [ true ]
+do
+	python3 manage.py runserver
+done

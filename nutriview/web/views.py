@@ -24,4 +24,7 @@ def root(request):
                 if parent['Name'] == 'Food' and item['Confidence'] > 75:
                     foods.append(item['Name'])
 
+    for food in foods:
+        pass
+
     return HttpResponse(json.dumps(foods))
