@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from nutriview import settings
 
-import boto3, base64, json
+import boto3, json
 
 # Create your views here.
 def root(request):
