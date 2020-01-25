@@ -124,3 +124,4 @@ import local_settings
 
 AWS_SERVER_PUBLIC_KEY = local_settings.AWS_SERVER_PUBLIC_KEY
 AWS_SERVER_SECRET_KEY = local_settings.AWS_SERVER_SECRET_KEY
+FDA_API_KEY = local_settings.FDA_API_KEY
