@@ -120,3 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+import local_settings
+
+AWS_SERVER_PUBLIC_KEY = local_settings.AWS_SERVER_PUBLIC_KEY
+AWS_SERVER_SECRET_KEY = local_settings.AWS_SERVER_SECRET_KEY
