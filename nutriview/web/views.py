@@ -64,7 +64,6 @@ def analysis(request):
     camera = cv2.VideoCapture(0)
     return_value, image=camera.read()
     cv2.imwrite('file.png',image)
-    #img = np.ones((100, 100), np.uint8)
     is_success, buffer = cv2.imencode(".jpg", image)
     io_buf = io.BytesIO(buffer)
     
@@ -73,12 +72,11 @@ def analysis(request):
         aws_secret_access_key=settings.AWS_SERVER_SECRET_KEY,
         region_name="us-east-2",
     )
+
     client = session.client('rekognition')
-    file = request.GET.get('img', 'pizza')
-    #with open(file + ".jpg", "rb") as image_file:
     response = client.detect_labels(Image={'Bytes': io_buf.read()})
     #return HttpResponse(json.dumps(response)) ###TEMP
-    
+
     labels = response['Labels']
     #return HttpResponse(json.dumps(labels))
     foods = []
@@ -92,3 +90,6 @@ def analysis(request):
 
     item = request.GET.get('item', 'good')
     return HttpResponse(item)
+
+def theme_index(request):
+    return render(request, "theme_index.html")
