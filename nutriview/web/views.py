@@ -4,7 +4,6 @@ from nutriview import settings
 
 import boto3, json, urllib.request, urllib.parse
 
-# Create your views here.
 def root_old(request):
     """
 
@@ -78,17 +77,18 @@ def analysis(request):
     file = request.GET.get('img', 'pizza')
     #with open(file + ".jpg", "rb") as image_file:
     response = client.detect_labels(Image={'Bytes': io_buf.read()})
-    return HttpResponse(json.dumps(response)) ###TEMP
+    #return HttpResponse(json.dumps(response)) ###TEMP
     
     labels = response['Labels']
+    #return HttpResponse(json.dumps(labels))
     foods = []
     for item in labels:
         if item['Parents'] is not None:
             for parent in item['Parents']:
                 if parent['Name'] == 'Food' and item['Confidence'] > 75:
                     foods.append(item['Name'])
+    return HttpResponse(json.dumps(foods))
 
 
-    #cv2.imwrite('file.png',image)
     item = request.GET.get('item', 'good')
     return HttpResponse(item)
