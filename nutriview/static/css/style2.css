@@ -1,5 +1,6 @@
 @import "compass/css3";
 
+
 .image {
   width: 250px;
   float: left;
@@ -14,10 +15,10 @@ p {
 }
 
 .performance-facts {
-  border: 1px solid black;
+  border: 6px solid black;
   margin: 20px;
   float: left;
-  width: 280px;
+  width: 325px;
   padding: 0.5rem;
   table {
     border-collapse: collapse;
@@ -102,6 +103,23 @@ p {
       }
     }
   }
+}
+.background {
+  background: url(../img/new-bkg.jpg);
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+.img-resize {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
 }
 
 .text-center {
