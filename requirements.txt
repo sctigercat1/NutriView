@@ -1,1 +1,1 @@
-django djangorestframework django-cors-headers
+django boto3
