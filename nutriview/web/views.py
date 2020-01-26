@@ -92,6 +92,9 @@ def nutri(request):
 def index(request):
     return render(request, "index.html")
 
+def error(request):
+    return render(request, "error.html")
+
 def _parse_data_url(url):
 	scheme, data = url.split(":",1)
 	assert scheme == "data", "unsupported scheme: "+scheme
