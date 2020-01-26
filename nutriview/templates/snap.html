@@ -34,7 +34,7 @@
         </div>
 
         <div style="margin: 0 auto;">
-            <a onClick="takeASnap();" href="#"><video id="videoElement" autoplay></video></a>
+            <a onClick="takeASnap();" href="#"><video id="videoElement" autoplay playsinline></video></a>
             <form action="/analysis" method="post" id="form">
                 {% csrf_token %}
                 <input type="hidden" name="blob" id="blob" value="">
@@ -51,12 +51,22 @@
     
   <script>
 var vid = document.querySelector("#videoElement");
+var constraints = {
+     audio: false,
+     video: {
+         facingMode: 'environment'
+     }
+}
 
-navigator.mediaDevices.getUserMedia({video: true}) // request cam
+navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
+    vid.srcObject = stream;
+});
+
+/*navigator.mediaDevices.getUserMedia({video: true}) // request cam
 .then(stream => {
   vid.srcObject = stream; // don't use createObjectURL(MediaStream)
   return vid.play(); // returns a Promise
-})
+})*/
       
 function dataURItoBlob(dataURI) {
     // convert base64 to raw binary data held in a string
