@@ -4,6 +4,7 @@ from nutriview import settings
 
 import boto3, json, urllib.request, urllib.parse
 import binascii
+import requests
 
 def root_old(request):
     """
@@ -36,7 +37,7 @@ def analysis(request):
         aws_secret_access_key=settings.AWS_SERVER_SECRET_KEY,
         region_name="us-east-2",
     )
-    
+
     uri = request.POST['blob'] + '=='
     binary_uri = _parse_data_url(uri)[0]
 
