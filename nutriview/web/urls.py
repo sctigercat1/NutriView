@@ -11,3 +11,5 @@ urlpatterns = [
     #path('index', views.index),
     #path('nutriInfo', views.nutriInfo),
 ]
+handler404 = 'web.views.handler404'
+handler500 = 'web.views.handler500'

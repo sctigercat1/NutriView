@@ -15,14 +15,14 @@ html {
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #9fa1a4;
   line-height: 1.5;
 }
 
 a {
   color: #777;
-  transition: .3s all ease;
+  transition: 0.3s all ease;
 }
 
 a:hover {
@@ -30,8 +30,8 @@ a:hover {
 }
 
 h1 {
-    color: white;
-    font-size: calc(3vw + 3vh + 1.5vmin);
+  color: white;
+  font-size: calc(3vw + 3vh + 1.5vmin);
 }
 
 .container {
@@ -53,6 +53,12 @@ h1 {
 
 .border-bottom {
   border-bottom: 1px solid #f2f2f2 !important;
+}
+
+/*logo styling*/
+#logo_img {
+  width: 25%;
+  height: 25%;
 }
 
 /* Default btn sre-tyling */
@@ -85,7 +91,7 @@ h1 {
 }
 
 .vertical-center {
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100%; /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */
 
   display: flex;
@@ -93,17 +99,17 @@ h1 {
 }
 
 #videoElement {
-    display: block;
-    width: 75%;
-    max-width: 100%;
-    margin: 0 auto;
-    height: auto;
+  display: block;
+  width: 75%;
+  max-width: 100%;
+  margin: 0 auto;
+  height: auto;
 }
 
 .img-resize {
-    max-width: 100%;
+  max-width: 100%;
 }
 button {
-  margin:auto;
-  display:block;
+  margin: auto;
+  display: block;
 }

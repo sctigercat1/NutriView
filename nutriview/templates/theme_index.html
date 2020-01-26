@@ -1,17 +1,35 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block "content" %}
-  <body class="background vertical-center">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-sm-6 text-center">
-          <h1>NutriView</h1>
-          <p><a href="/snap" class="btn btn-outline-white">Get started</a></p>
-        </div>
-        <div class="col-sm-6">
-          <img class="img-resize" src="{% static 'img/food.png' %}" />
-        </div>
+{% extends "base.html" %} {% load static %} {% block "content" %}
+<body class="background vertical-center">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-sm-6 text-center">
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0"
+          y="0"
+          width="750"
+          height="1000"
+          viewBox="0, 0, 750, 1000"
+          id="logo_img"
+        >
+          <g id="Layer_1">
+            <path
+              d="M376.636,4.109 C580.008,4.109 743.236,424.284 743.236,627.655 C743.236,831.026 578.371,995.891 375,995.891 C171.629,995.891 6.764,831.026 6.764,627.655 C6.764,424.284 173.266,4.109 376.637,4.109 z M710.706,498.747 L708.192,501.586 C708.347,565.19 684.892,634.734 643.051,684.628 C581.709,757.776 402.885,815.087 371.867,869.995 C338.379,929.276 395.712,963.48 449.891,957.245 C651.576,934.034 770.148,683.057 710.706,498.747 z M363.144,69.553 C275.569,69.798 219.846,120.453 172.875,189.812 C106.763,287.435 71.483,402.955 44.49,516.653 L44.491,516.674 C90.36,390.535 229.236,289.637 334.105,215.84 C359.58,197.913 460.827,79.59 372.279,70.269 L363.144,69.553 z"
+              fill="#FFFFFF"
+            />
+          </g>
+        </svg>
+        <!--below is the original log color-->
+        <!--4C8F2D-->
+        <h1>NutriView</h1>
+        <p><a href="/snap" class="btn btn-outline-white">Get started</a></p>
+      </div>
+      <div class="col-sm-6">
+        <img class="img-resize" src="{% static 'img/food.png' %}" />
       </div>
     </div>
-{% endblock %}
+  </div>
+  {% endblock %}
+</body>
