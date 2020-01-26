@@ -68,12 +68,12 @@ def analysis(request):
     #return HttpResponse(json.dumps(response)) ###TEMP
 
     labels = response['Labels']
-    foods = []
+    foods = {}
     for item in labels:
         if item['Parents'] is not None:
             for parent in item['Parents']:
                 if parent['Name'] == 'Food' and item['Confidence'] > 75 and item['Name'] not in ('Fruit'):
-                    foods.append({item['Name']: item['Confidence']})
+                    foods[item['Name']] = item['Confidence']
 
     if len(foods) < 1:
         return render(request, "error.html")
