@@ -96,3 +96,6 @@ def root(request):
 
 def nutri(request):
     return render(request, "nutrition.html")
+
+def index(request):
+    return render(request, "index.html")
