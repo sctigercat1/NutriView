@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
   <head>
     <meta charset="utf-8" />
     <title>SoftLand Bootstrap Template</title>
@@ -33,6 +34,33 @@
   </head>
 
   <body class="background">
+=======
+
+<head>
+  <meta charset="utf-8">
+  <title>NutriView</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body class="background">
+>>>>>>> 6c50580f49ecdad2ece64adc40ab8d5c768366d2
     <div class="container">
       <div class="text-center" style="margin-top: 1vw;">
         <h1>Tap to Scan</h1>
@@ -50,6 +78,7 @@
       </div>
     </div>
 
+<<<<<<< HEAD
     <!-- Vendor JS Files -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
@@ -77,6 +106,59 @@
   vid.srcObject = stream; // don't use createObjectURL(MediaStream)
   return vid.play(); // returns a Promise
 })*/
+=======
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+  <script>
+    var vid = document.querySelector("#videoElement");
+    var constraints = {
+         audio: false,
+         video: {
+             facingMode: 'environment'
+         }
+    }
+
+    navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
+        vid.srcObject = stream;
+    });
+
+      
+    function dataURItoBlob(dataURI) {
+        // convert base64 to raw binary data held in a string
+        var byteString = atob(dataURI.split(',')[1]);
+
+        // separate out the mime component
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+        // write the bytes of the string to an ArrayBuffer
+        var arrayBuffer = new ArrayBuffer(byteString.length);
+        var _ia = new Uint8Array(arrayBuffer);
+        for (var i = 0; i < byteString.length; i++) {
+            _ia[i] = byteString.charCodeAt(i);
+        }
+
+        var dataView = new DataView(arrayBuffer);
+        var blob = new Blob([dataView], { type: mimeString });
+        return blob;
+    }
+
+    function takeASnap() {
+      var canvas = document.createElement('canvas'); // create a canvas
+      var ctx = canvas.getContext('2d'); // get its context
+      canvas.width = vid.videoWidth; // set its size to the one of the video
+      canvas.height = vid.videoHeight;
+      ctx.drawImage(vid, 0,0); // the video
+      var dataURL = canvas.toDataURL();
+      $("#blob").val(dataURL);
+      $("#form").submit();
+    }
+
+  </script>
+
+</body>
+>>>>>>> 6c50580f49ecdad2ece64adc40ab8d5c768366d2
 
       function dataURItoBlob(dataURI) {
         // convert base64 to raw binary data held in a string

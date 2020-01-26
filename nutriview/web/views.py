@@ -30,7 +30,7 @@ def snap(request):
     return render(request, "snap.html")
 
 def nutriInfo(request):
-    foods = ["Apple"]
+    foods = ["Pizza"]
     fda_endpoint = "https://api.nal.usda.gov/fdc/v1/search?api_key=" + settings.FDA_API_KEY
     for food in foods:
         data = json.dumps({'generalSearchInput': food}).encode()
@@ -48,6 +48,7 @@ def nutriInfo(request):
     endpoint = "https://api.nal.usda.gov/fdc/v1/%i?api_key=%s" % (fdcIdOfFood, settings.FDA_API_KEY)
     with urllib.request.urlopen(endpoint) as data:
         response = json.loads(data.read())
+    #return HttpResponse(json.dumps(response))
 
     # Parse data
     labelNutrients = response['labelNutrients']
