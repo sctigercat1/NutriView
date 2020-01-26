@@ -13,7 +13,7 @@
 <section class="performance-facts" style="background: white; margin: 0 auto;">
   <header class="performance-facts__header">
     <h1 class="performance-facts__title">Nutrition Facts</h1>
-      <p>Pizza</p>
+      <p>{{ item.name }}</p>
       <p>Serving Size 1/2 cup (about 82g)</p>
 
   </header>
@@ -51,7 +51,7 @@
               var x = "{% if info.fat.value %}{{ info.fat.value|floatformat:'0'}}{% else %}0{% endif %}";
               x = x / 65;
               x = x * 100;
-              return x;
+              return Math.round(x);
             }
               document.write("<b>" + divide() + "%</b>" );
           </script>
@@ -70,7 +70,7 @@
               var x = "{% if info.saturatedfat.value|floatformat:'0' %}{{ info.saturatedFat.value|floatformat:'0'}}{% else %}0{% endif %}";
               x = x / 20;
               x = x * 100;
-              return x;
+              return Math.round(x);
             }
               document.write("<b>" + divide() + "%</b>" );
           </script>
@@ -89,7 +89,7 @@
               var x = "{% if info.transFat.value %}{{ info.transFat.value|floatformat:'0'}}{% else %}0{% endif %}";
               x = x / 6;
               x = x * 100;
-              return x;
+              return Math.round(x);
             }
               document.write("<b>" + divide() + "%</b>" );
           </script>
@@ -106,7 +106,7 @@
               var x = "{% if info.cholesterol.value %}{{ info.cholesterol.value|floatformat:'0'}}{% else %}0{% endif %}";
               x = x / 300;
               x = x * 100;
-              return x;
+              return Math.round(x);
             }
               document.write("<b>" + divide() + "%</b>" );
           </script>
@@ -123,7 +123,7 @@
               var x = "{% if info.sodium.value %}{{ info.sodium.value|floatformat:'0'}}{% else %}0{% endif %}";
               x = x / 2400;
               x = x * 100;
-              return x;
+              return Math.round(x);
             }
               document.write("<b>" + divide() + "%</b>" );
           </script>
@@ -140,7 +140,7 @@
               var x = "{% if info.carbohydrates.value %}{{ info.carbohydrates.value|floatformat:'0'}}{% else %}0{% endif %}";
               x = x / 300;
               x = x * 100;
-              return x;
+              return Math.round(x);
             }
               document.write("<b>" + divide() + "%</b>" );
           </script>
@@ -159,7 +159,7 @@
               var x = "{% if info.fiber.value %}{{ info.fiber.value|floatformat:'0'}}{% else %}0{% endif %}";
               x = x / 25;
               x = x * 100;
-              return x;
+              return Math.round(x);
             }
               document.write("<b>" + divide() + "%</b>" );
           </script>
@@ -178,7 +178,7 @@
               var x = "{% if info.sugars.value %}{{ info.sugars.value|floatformat:'0'}}{% else %}0{% endif %}";
               x = x / 38;
               x = x * 100;
-              return x;
+              return Math.round(x);
             }
               document.write("<b>" + divide() + "%</b>" );
           </script>
@@ -195,38 +195,7 @@
     </tbody>
   </table>
 
-  <table class="performance-facts__table--grid">
-    <tbody>
-      <tr>
-      </tr>
-      <tr class="thin-end">
-        <td colspan="2">
-          Calcium
-          <script>
-            function divide(){
-              var x = "{% if info.calcium.value %}{{ info.calcium.value|floatformat:'0'}}{% else %}0{% endif %}";
-              x = x / 1000;
 
-              return x;
-            }
-              document.write(divide() + "%");
-          </script>
-        </td>
-        <td>
-          Iron
-          <script>
-            function divide(){
-              var x = "{% if info.iron.value %}{{ info.iron.value|floatformat:'0'}}{% else %}0{% endif %}";
-              x = x / 19;
-              x = x * 100;
-              return x;
-            }
-              document.write(divide() + "%"");
-          </script>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 
   <p class="small-info">* Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs:</p>
 
