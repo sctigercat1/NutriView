@@ -32,7 +32,7 @@ if SECRET_KEY == 'e#ml&(_#c*g)4lz!yc7evy+e9a!uem$(zwsw(g)iwe*gpoqr)-':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['35.243.165.164', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['nutriview.space', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -81,24 +81,12 @@ WSGI_APPLICATION = 'nutriview.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': local_settings.DB_NAME or '',
-            'USER': local_settings.DB_USERNAME or '',
-            'PASSWORD': local_settings.DB_PASSWORD or '',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
-    }
+}
 
 
 # Password validation
