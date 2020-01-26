@@ -30,7 +30,9 @@ def nutriInfo(request, food):
 
     # Parse data
     labelNutrients = response['labelNutrients']
-    return render(request, "nutrition.html", {"info": labelNutrients, "fdcIdOfFood": fdcIdOfFood})
+    return render(request, "nutrition.html", {"info": labelNutrients, "fdcIdOfFood": fdcIdOfFood, \
+                    "food": food['description'].title(), "servingSize": round(response['servingSize']), \
+                    "servingSizeUnit": response['servingSizeUnit']})
 
 def analysis(request):
     session = boto3.Session(
