@@ -29,15 +29,14 @@ def root_old(request):
 def snap(request):
     return render(request, "snap.html")
 
-def nutriInfo(request):
-    foods = ["Pizza"]
+def nutriInfo(request, food):
+    # Get FDCID for food
     fda_endpoint = "https://api.nal.usda.gov/fdc/v1/search?api_key=" + settings.FDA_API_KEY
-    for food in foods:
-        data = json.dumps({'generalSearchInput': food}).encode()
-        r = urllib.request.Request(fda_endpoint, data)
-        r.add_header('Content-Type', 'application/json')
-        with urllib.request.urlopen(r) as response:
-            response = json.loads(response.read())
+    data = json.dumps({'generalSearchInput': food}).encode()
+    r = urllib.request.Request(fda_endpoint, data)
+    r.add_header('Content-Type', 'application/json')
+    with urllib.request.urlopen(r) as response:
+        response = json.loads(response.read())
 
     # Read initial response data
     foods = response['foods']
@@ -73,14 +72,15 @@ def analysis(request):
     for item in labels:
         if item['Parents'] is not None:
             for parent in item['Parents']:
-                if parent['Name'] == 'Food' and item['Confidence'] > 75:
-                    foods.append(item['Name'])
-    return HttpResponse(json.dumps(foods) + '<br><br>' + json.dumps(labels))
+                if parent['Name'] == 'Food' and item['Confidence'] > 75 and item['Name'] not in ('Fruit'):
+                    foods.append({item['Name']: item['Confidence']})
 
+    if len(foods) < 1:
+        pass
 
-    item = request.GET.get('item', 'good')
-    nutriInfo(foods)
-    return HttpResponse(item)
+    final_food = max(foods, key=foods.get) # Get max confidence
+    
+    return nutriInfo(request, final_food)
 
 def root(request):
     return render(request, "theme_index.html")
