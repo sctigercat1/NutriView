@@ -1,31 +1,6 @@
-{% load static %}
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <title>NutriView</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
-
-  <!-- Favicons -->
-  <link href="{% static 'img/favicon.png' %}" rel="icon">
-  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
-    rel="stylesheet">
-
-  <!-- Bootstrap CSS File -->
-  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="{% static 'css/style.css' %}" rel="stylesheet">
-
-</head>
-
+{% block "content" %}
 <body class="background">
     <div class="container">
         <div class="text-center" style="margin-top: 1vw;">
@@ -41,11 +16,10 @@
             </form>
         </div>
     </div>
+</body>
+{% endblock %}
 
-  <!-- Vendor JS Files -->
-  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-
+{% block "footer" %}
   <script>
     var vid = document.querySelector("#videoElement");
     var constraints = {
@@ -91,7 +65,4 @@
     }
 
   </script>
-
-</body>
-
-</html>
+{% endblock %}

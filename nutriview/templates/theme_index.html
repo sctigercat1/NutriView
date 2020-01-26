@@ -1,32 +1,8 @@
+{% extends "base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en" style="overflow-y: hidden;">
-
-<head>
-  <meta charset="utf-8">
-  <title>NutriView</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
-
-  <!-- Favicons -->
-  <link href="{% static 'img/favicon.png' %}" rel="icon">
-  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700|Roboto:300,400,700&display=swap"
-    rel="stylesheet">
-
-  <!-- Bootstrap CSS File -->
-  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="{% static 'css/style.css' %}" rel="stylesheet">
-
-</head>
-
-<body class="background vertical-center">
+{% block "content" %}
+  <body class="background vertical-center">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-sm-6">
@@ -34,18 +10,8 @@
           <p><a href="/snap" class="btn btn-outline-white">Get started</a></p>
         </div>
         <div class="col-sm-6">
-          <img class="img-resize" src="{% static 'img/food.png' %}">
+          <img class="img-resize" src="{% static 'img/food.png' %}" />
         </div>
       </div>
     </div>
-
-  <!-- Vendor JS Files -->
-  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-
-  <!-- Template Main JS File -->
-  <script src="{% static 'js/main.js' %}"></script>
-
-</body>
-
-</html>
+{% endblock %}
