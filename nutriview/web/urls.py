@@ -11,5 +11,6 @@ urlpatterns = [
     #path('index', views.index),
     #path('nutriInfo', views.nutriInfo),
 ]
+#below this is erasable
 handler404 = 'web.views.handler404'
 handler500 = 'web.views.handler500'

@@ -80,7 +80,7 @@ def index(request):
 
 def error(request):
     return render(request, "error.html")
-
+#might want to revert handlers to previous form
 def handler404(request, *args, **argv):
     response = render(request, 'error.html', {},
                                   context_instance=RequestContext(request))
