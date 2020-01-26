@@ -40,8 +40,7 @@
           {{ info.calories.value|floatformat:"0" }}
         </th>
         <td>
-          Calories from Fat
-          ????
+          <!--Calories from Fat -->
         </td>
       </tr>
       <tr class="thick-row">
@@ -163,7 +162,15 @@
           {% if info.fiber.value %}{{ info.fiber.value|floatformat:'0'}}{% else %}0{% endif %}g
         </th>
         <td>
-          <b>4%</b>
+          <script>
+            function divide(){
+              var x = "{% if info.fiber.value %}{{ info.fiber.value|floatformat:'0'}}{% else %}0{% endif %}";
+              x = x / 25;
+              x = x * 100;
+              return x;
+            }
+              document.write("<b>" + divide() + "%</b>" );
+          </script>
         </td>
       </tr>
       <tr>
@@ -174,6 +181,15 @@
           {% if info.sugars.value %}{{ info.sugars.value|floatformat:'0'}}{% else %}0{% endif %}g
         </th>
         <td>
+          <script>
+            function divide(){
+              var x = "{% if info.sugars.value %}{{ info.sugars.value|floatformat:'0'}}{% else %}0{% endif %}";
+              x = x / 38;
+              x = x * 100;
+              return x;
+            }
+              document.write("<b>" + divide() + "%</b>" );
+          </script>
         </td>
       </tr>
       <tr class="thick-end">
@@ -190,23 +206,31 @@
   <table class="performance-facts__table--grid">
     <tbody>
       <tr>
-        <td colspan="2">
-          Vitamin A
-          10%
-        </td>
-        <td>
-          Vitamin C
-          0%
-        </td>
       </tr>
       <tr class="thin-end">
         <td colspan="2">
           Calcium
-          10%
+          <script>
+            function divide(){
+              var x = "{% if info.calcium.value %}{{ info.calcium.value|floatformat:'0'}}{% else %}0{% endif %}";
+              x = x / 1000;
+
+              return x;
+            }
+              document.write(divide() + "%");
+          </script>
         </td>
         <td>
           Iron
-          6%
+          <script>
+            function divide(){
+              var x = "{% if info.iron.value %}{{ info.iron.value|floatformat:'0'}}{% else %}0{% endif %}";
+              x = x / 19;
+              x = x * 100;
+              return x;
+            }
+              document.write(divide() + "%"");
+          </script>
         </td>
       </tr>
     </tbody>
