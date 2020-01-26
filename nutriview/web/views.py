@@ -76,7 +76,7 @@ def analysis(request):
                     foods.append({item['Name']: item['Confidence']})
 
     if len(foods) < 1:
-        pass
+        return render(request, "error.html")
 
     final_food = max(foods, key=foods.get) # Get max confidence
     
