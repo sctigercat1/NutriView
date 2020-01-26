@@ -1,6 +1,13 @@
 html {
   overflow-x: hidden;
-  overflow-y: hidden;
+  
+}
+
+@media only screen and (min-width: 768px) {
+  html {
+    /* disable scrolling on desktop */
+    overflow-y: hidden;
+  }
 }
 
 body {
