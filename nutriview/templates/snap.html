@@ -34,7 +34,7 @@
         </div>
 
         <div style="margin: 0 auto;">
-            <a onClick="takeASnap();" href="#"><video id="videoElement"></video></a>
+            <a onClick="takeASnap();" href="#"><video id="videoElement" autoplay></video></a>
             <form action="/analysis" method="post" id="form">
                 {% csrf_token %}
                 <input type="hidden" name="blob" id="blob" value="">
