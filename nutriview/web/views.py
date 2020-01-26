@@ -4,7 +4,6 @@ from nutriview import settings
 
 import boto3, json, urllib.request, urllib.parse
 import binascii
-import requests
 
 def root_old(request):
     """
@@ -31,13 +30,28 @@ def snap(request):
     return render(request, "snap.html")
 
 def nutriInfo(request):
+    foods = ["Apple"]
     fda_endpoint = "https://api.nal.usda.gov/fdc/v1/search?api_key=" + settings.FDA_API_KEY
-    for food in requests:
+    for food in foods:
         data = json.dumps({'generalSearchInput': food}).encode()
         r = urllib.request.Request(fda_endpoint, data)
         r.add_header('Content-Type', 'application/json')
         with urllib.request.urlopen(r) as response:
-            return HttpResponse(response.read())
+            response = json.loads(response.read())
+
+    # Read initial response data
+    foods = response['foods']
+    #return HttpResponse(json.dumps(foods))
+    food = foods[0] # First choice food
+    fdcIdOfFood = food['fdcId']
+    # Request nutritional info about this one food
+    endpoint = "https://api.nal.usda.gov/fdc/v1/%i?api_key=%s" % (fdcIdOfFood, settings.FDA_API_KEY)
+    with urllib.request.urlopen(endpoint) as data:
+        response = json.loads(data.read())
+
+    # Parse data
+    labelNutrients = response['labelNutrients']
+    return render(request, "nutrition.html", {"info": labelNutrients, "fdcIdOfFood": fdcIdOfFood})
 
 def analysis(request):
     session = boto3.Session(

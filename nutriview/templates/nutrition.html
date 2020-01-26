@@ -21,7 +21,7 @@
 <section class="performance-facts" style="background: white; margin: 0 auto;">
   <header class="performance-facts__header">
     <h1 class="performance-facts__title">Nutrition Facts</h1>
-    <p>Pizza
+    <p>Pizza --> {{ fdcIdOfFood }}
     <p>Serving Size 1/2 cup (about 82g)
 
   </header>
@@ -37,11 +37,11 @@
       <tr>
         <th colspan="2">
           <b>Calories</b>
-          200
+          {{ info.calories.value|floatformat:"0" }}
         </th>
         <td>
           Calories from Fat
-          130
+          ????
         </td>
       </tr>
       <tr class="thick-row">
@@ -52,7 +52,7 @@
       <tr>
         <th colspan="2">
           <b>Total Fat</b>
-          14g
+          {{ info.fat.value|floatformat:"0" }}g
         </th>
         <td>
           <b>22%</b>
@@ -63,7 +63,7 @@
         </td>
         <th>
           Saturated Fat
-          9g
+          {{ info.calories.value|floatformat:"0" }}g
         </th>
         <td>
           <b>22%</b>
@@ -74,7 +74,7 @@
         </td>
         <th>
           Trans Fat
-          0g
+          {{ info.transFat.value|floatformat:"0" }}g
         </th>
         <td>
         </td>
@@ -82,7 +82,7 @@
       <tr>
         <th colspan="2">
           <b>Cholesterol</b>
-          55mg
+          {{ info.cholesterol.value|floatformat:"0" }}mg
         </th>
         <td>
           <b>18%</b>
@@ -91,7 +91,7 @@
       <tr>
         <th colspan="2">
           <b>Sodium</b>
-          40mg
+          {{ info.sodium.value|floatformat:"0" }}mg
         </th>
         <td>
           <b>2%</b>
@@ -100,7 +100,7 @@
       <tr>
         <th colspan="2">
           <b>Total Carbohydrate</b>
-          17g
+          {{ info.carbohydrates.value|floatformat:"0" }}g
         </th>
         <td>
           <b>6%</b>
@@ -111,7 +111,7 @@
         </td>
         <th>
           Dietary Fiber
-          1g
+          {{ info.fiber.value|floatformat:"0" }}g
         </th>
         <td>
           <b>4%</b>
@@ -122,7 +122,7 @@
         </td>
         <th>
           Sugars
-          14g
+          {{ info.sugars.value|floatformat:"0" }}g
         </th>
         <td>
         </td>
@@ -130,7 +130,7 @@
       <tr class="thick-end">
         <th colspan="2">
           <b>Protein</b>
-          3g
+          {{ info.protein.value|floatformat:"0" }}g
         </th>
         <td>
         </td>
