@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from nutriview import settings
 
 import boto3, json, urllib.request, urllib.parse
+import binascii
 
 def root_old(request):
     """
@@ -25,60 +26,25 @@ def root_old(request):
 
     # return HttpResponse(json.dumps(foods))
 
-import cv2
-import time
-from django.http import StreamingHttpResponse
-from django.views.decorators import gzip
-
-class VideoCamera(object):
-    def __init__(self):
-        self.video = cv2.VideoCapture(0)
-    def __del__(self):
-        self.video.release()
-
-    def get_frame(self):
-        ret,image = self.video.read()
-        ret,jpeg = cv2.imencode('.jpg',image)
-        return jpeg.tobytes()
-
-def gen(camera):
-    while True:
-        frame = camera.get_frame()
-        yield(b'--frame\r\n'
-        b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-
-@gzip.gzip_page
-def feed(request):
-    try:
-        return StreamingHttpResponse(gen(VideoCamera()),content_type="multipart/x-mixed-replace;boundary=frame")
-    except HttpResponseServerError as e:
-        print("aborted")
-
 def snap(request):
-    return render(request, "main.html")
+    return render(request, "snap.html")
 
-import numpy as np
-import io
 
 def analysis(request):
-    camera = cv2.VideoCapture(0)
-    return_value, image=camera.read()
-    cv2.imwrite('file.png',image)
-    is_success, buffer = cv2.imencode(".jpg", image)
-    io_buf = io.BytesIO(buffer)
-
     session = boto3.Session(
         aws_access_key_id=settings.AWS_SERVER_PUBLIC_KEY,
         aws_secret_access_key=settings.AWS_SERVER_SECRET_KEY,
         region_name="us-east-2",
     )
+    
+    uri = request.POST['blob'] + '=='
+    binary_uri = _parse_data_url(uri)[0]
 
     client = session.client('rekognition')
-    response = client.detect_labels(Image={'Bytes': io_buf.read()})
+    response = client.detect_labels(Image={'Bytes': binary_uri})
     #return HttpResponse(json.dumps(response)) ###TEMP
 
     labels = response['Labels']
-    #return HttpResponse(json.dumps(labels))
     foods = []
     for item in labels:
         if item['Parents'] is not None:
@@ -97,5 +63,18 @@ def root(request):
 def nutri(request):
     return render(request, "nutrition.html")
 
+<<<<<<< HEAD
 def index(request):
     return render(request, "index.html")
+=======
+def _parse_data_url(url):
+	scheme, data = url.split(":",1)
+	assert scheme == "data", "unsupported scheme: "+scheme
+	mediatype, data = data.split(",",1)
+	# base64 urls might have a padding which might (should) be quoted:
+	data = urllib.parse.unquote_to_bytes(data)
+	if mediatype.endswith(";base64"):
+		return binascii.a2b_base64(data), mediatype[:-7] or None
+	else:
+		return data, mediatype or None
+>>>>>>> 3f3009966c938035df5bff0560ccb73eb04245d8
