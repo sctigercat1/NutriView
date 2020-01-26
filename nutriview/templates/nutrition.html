@@ -52,10 +52,18 @@
       <tr>
         <th colspan="2">
           <b>Total Fat</b>
-          {{ info.fat.value|floatformat:"0" }}g
+          {% if info.fat.value %}{{ info.fat.value|floatformat:'0'}}{% else %}0{% endif %}g
         </th>
         <td>
-          <b>22%</b>
+          <script>
+            function divide(){
+              var x = "{% if info.fat.value %}{{ info.fat.value|floatformat:'0'}}{% else %}0{% endif %}";
+              x = x / 65;
+              x = x * 100;
+              return x;
+            }
+              document.write("<b>" + divide() + "%</b>" );
+          </script>
         </td>
       </tr>
       <tr>
@@ -63,47 +71,88 @@
         </td>
         <th>
           Saturated Fat
-          {{ info.calories.value|floatformat:"0" }}g
+          {% if info.saturated.value %}{{ info.saturated.value|floatformat:'0'}}{% else %}0{% endif %}g
         </th>
         <td>
-          <b>22%</b>
+          <script>
+            function divide(){
+              var x = "{% if info.saturatedfat.value|floatformat:'0' %}{{ info.saturatedFat.value|floatformat:'0'}}{% else %}0{% endif %}";
+              x = x / 20;
+              x = x * 100;
+              return x;
+            }
+              document.write("<b>" + divide() + "%</b>" );
+          </script>
         </td>
       </tr>
       <tr>
         <td class="blank-cell">
         </td>
         <th>
-          Trans Fat
-          {{ info.transFat.value|floatformat:"0" }}g
+          <b>Trans Fat</b>
+          {% if info.transFat.value %}{{ info.transFat.value|floatformat:'0'}}{% else %}0{% endif %} g
         </th>
         <td>
+          <script>
+            function divide(){
+              var x = "{% if info.transFat.value %}{{ info.transFat.value|floatformat:'0'}}{% else %}0{% endif %}";
+              x = x / 6;
+              x = x * 100;
+              return x;
+            }
+              document.write("<b>" + divide() + "%</b>" );
+          </script>
         </td>
       </tr>
       <tr>
         <th colspan="2">
           <b>Cholesterol</b>
-          {{ info.cholesterol.value|floatformat:"0" }}mg
+          {% if info.cholesterol.value %}{{ info.cholesterol.value|floatformat:'0'}}{% else %}0{% endif %}mg
         </th>
         <td>
-          <b>18%</b>
+          <script>
+            function divide(){
+              var x = "{% if info.cholesterol.value %}{{ info.cholesterol.value|floatformat:'0'}}{% else %}0{% endif %}";
+              x = x / 300;
+              x = x * 100;
+              return x;
+            }
+              document.write("<b>" + divide() + "%</b>" );
+          </script>
         </td>
       </tr>
       <tr>
         <th colspan="2">
           <b>Sodium</b>
-          {{ info.sodium.value|floatformat:"0" }}mg
+          {% if info.sodium.value %}{{ info.sodium.value|floatformat:'0'}}{% else %}0{% endif %}mg
         </th>
         <td>
-          <b>2%</b>
+          <script>
+            function divide(){
+              var x = "{% if info.sodium.value %}{{ info.sodium.value|floatformat:'0'}}{% else %}0{% endif %}";
+              x = x / 2400;
+              x = x * 100;
+              return x;
+            }
+              document.write("<b>" + divide() + "%</b>" );
+          </script>
         </td>
       </tr>
       <tr>
         <th colspan="2">
           <b>Total Carbohydrate</b>
-          {{ info.carbohydrates.value|floatformat:"0" }}g
+          {% if info.carbohydrates.value %}{{ info.carbohydrates.value|floatformat:'0'}}{% else %}0{% endif %}g
         </th>
         <td>
-          <b>6%</b>
+          <script>
+            function divide(){
+              var x = "{% if info.carbohydrates.value %}{{ info.carbohydrates.value|floatformat:'0'}}{% else %}0{% endif %}";
+              x = x / 300;
+              x = x * 100;
+              return x;
+            }
+              document.write("<b>" + divide() + "%</b>" );
+          </script>
         </td>
       </tr>
       <tr>
@@ -111,7 +160,7 @@
         </td>
         <th>
           Dietary Fiber
-          {{ info.fiber.value|floatformat:"0" }}g
+          {% if info.fiber.value %}{{ info.fiber.value|floatformat:'0'}}{% else %}0{% endif %}g
         </th>
         <td>
           <b>4%</b>
@@ -122,7 +171,7 @@
         </td>
         <th>
           Sugars
-          {{ info.sugars.value|floatformat:"0" }}g
+          {% if info.sugars.value %}{{ info.sugars.value|floatformat:'0'}}{% else %}0{% endif %}g
         </th>
         <td>
         </td>
@@ -130,7 +179,7 @@
       <tr class="thick-end">
         <th colspan="2">
           <b>Protein</b>
-          {{ info.protein.value|floatformat:"0" }}g
+          {% if info.protein.value %}{{ info.protein.value|floatformat:'0'}}{% else %}0{% endif %}g
         </th>
         <td>
         </td>
