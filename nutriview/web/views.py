@@ -1,15 +1,14 @@
-from django.shortcuts import render
 from django.http import HttpResponse
-from django.template import RequestContext
+from django.shortcuts import render
 from nutriview import settings
 
-import boto3, json, urllib.request, urllib.parse
-import binascii
+import binascii, boto3, json, urllib.request, urllib.parse
 
 def snap(request):
     return render(request, "snap.html")
 
 def nutriInfo(request, food):
+    ## FDA API
     # Get FDCID for food
     fda_endpoint = "https://api.nal.usda.gov/fdc/v1/search?api_key=" + settings.FDA_API_KEY
     data = json.dumps({'generalSearchInput': food}).encode()
@@ -20,14 +19,12 @@ def nutriInfo(request, food):
 
     # Read initial response data
     foods = response['foods']
-    #return HttpResponse(json.dumps(foods))
     food = foods[0] # First choice food
     fdcIdOfFood = food['fdcId']
     # Request nutritional info about this one food
     endpoint = "https://api.nal.usda.gov/fdc/v1/%i?api_key=%s" % (fdcIdOfFood, settings.FDA_API_KEY)
     with urllib.request.urlopen(endpoint) as data:
         response = json.loads(data.read())
-    #return HttpResponse(json.dumps(response))
 
     # Parse data
     if 'labelNutrients' in response:
@@ -39,16 +36,18 @@ def nutriInfo(request, food):
     return render(request, "error.html")
 
 def analysis(request):
+    ## AWS API
     session = boto3.Session(
         aws_access_key_id=settings.AWS_SERVER_PUBLIC_KEY,
         aws_secret_access_key=settings.AWS_SERVER_SECRET_KEY,
         region_name="us-east-2",
     )
 
-    # JS does not pad properly
+    # JS does not pad base64 properly
     uri = request.POST['blob'] + '=='
     binary_uri = _parse_data_url(uri)[0]
 
+    # Actually call the vision analysis
     client = session.client('rekognition')
     response = client.detect_labels(Image={'Bytes': binary_uri})
 
@@ -65,18 +64,16 @@ def analysis(request):
         return render(request, "error.html")
 
     final_food = max(foods, key=foods.get) # Get key of max confidence
-    
+
+    # Pass to nutrition analysis at FDA and show results
     return nutriInfo(request, final_food)
 
 def root(request):
     return render(request, "theme_index.html")
 
 def nutri(request):
+    # For testing the nutrition page only.
     return render(request, "nutrition.html")
-
-
-def index(request):
-    return render(request, "index.html")
 
 def error(request):
     return render(request, "error.html")
