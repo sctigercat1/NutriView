@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import RequestContext
 from nutriview import settings
 
 import boto3, json, urllib.request, urllib.parse
@@ -74,6 +75,18 @@ def index(request):
 
 def error(request):
     return render(request, "error.html")
+
+def handler404(request, *args, **argv):
+    response = render(request, 'error.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
+
+def handler500(request, *args, **argv):
+    response = render(request, 'error.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 500
+    return response
 
 def _parse_data_url(url):
 	scheme, data = url.split(":",1)
