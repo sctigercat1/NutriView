@@ -8,11 +8,11 @@ def snap(request):
     return render(request, "snap.html")
 
 def nutriInfo(request, food):
-    ## FDA API
+    ## USDA API
     # Get FDCID for food
-    fda_endpoint = "https://api.nal.usda.gov/fdc/v1/search?api_key=" + settings.FDA_API_KEY
+    usda_endpoint = "https://api.nal.usda.gov/fdc/v1/search?api_key=" + settings.USDA_API_KEY
     data = json.dumps({'generalSearchInput': food}).encode()
-    r = urllib.request.Request(fda_endpoint, data)
+    r = urllib.request.Request(usda_endpoint, data)
     r.add_header('Content-Type', 'application/json')
     with urllib.request.urlopen(r) as response:
         response = json.loads(response.read())
@@ -22,7 +22,7 @@ def nutriInfo(request, food):
     food = foods[0] # First choice food
     fdcIdOfFood = food['fdcId']
     # Request nutritional info about this one food
-    endpoint = "https://api.nal.usda.gov/fdc/v1/%i?api_key=%s" % (fdcIdOfFood, settings.FDA_API_KEY)
+    endpoint = "https://api.nal.usda.gov/fdc/v1/%i?api_key=%s" % (fdcIdOfFood, settings.USDA_API_KEY)
     with urllib.request.urlopen(endpoint) as data:
         response = json.loads(data.read())
 
@@ -65,7 +65,7 @@ def analysis(request):
 
     final_food = max(foods, key=foods.get) # Get key of max confidence
 
-    # Pass to nutrition analysis at FDA and show results
+    # Pass to nutrition analysis at USDA and show results
     return nutriInfo(request, final_food)
 
 def root(request):
