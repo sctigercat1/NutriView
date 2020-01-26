@@ -8,7 +8,7 @@ Materials used: Django, Python, AWS Rekognition, and the USDA's FoodData API (ht
 
 ---
 
-### Usage
+## Usage
 
 To start:
 
@@ -22,6 +22,8 @@ FDA_API_KEY = ""
 
 2. Run the following commands:
 
-```pip3 install -r requirements.txt
+```
+pip3 install -r requirements.txt
 python3 manage.py migrate
-python3 manage.py runserver```
+python3 manage.py runserver
+```
