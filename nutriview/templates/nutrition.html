@@ -5,11 +5,19 @@
 
 {% block "header" %}
 <link href="{% static 'css/style2.css' %}" rel="stylesheet">
+<style>
+  a:hover, a:visited, a:link, a:active
+  {
+      color: black;
+      text-decoration: none;
+  }
+</style>
 {% endblock %}
 
 {% block "content" %}
-<body class="background">
 
+<body class="background">
+<a href="/">
 <section class="performance-facts" style="background: white; margin: 0 auto;">
   <header class="performance-facts__header">
     <h1 class="performance-facts__title">Nutrition Facts</h1>
@@ -251,4 +259,6 @@
   </p>
 
 </section>
+</a>
+
 {% endblock %}

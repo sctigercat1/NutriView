@@ -103,3 +103,7 @@ h1 {
 .img-resize {
     max-width: 100%;
 }
+button {
+  margin:auto;
+  display:block;
+}
