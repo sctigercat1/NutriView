@@ -60,6 +60,18 @@ h1 {
   width: 25%;
   height: 25%;
 }
+.logo {
+  animation: slideFromLeft 1s 1;
+}
+/*logo animation */
+@keyframes slideFromLeft {
+  0% {
+    transform: translate(-300%);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
 
 /* Default btn sre-tyling */
 
@@ -72,11 +84,21 @@ h1 {
   border: 2px solid #fff;
   background: none;
   color: #fff;
+  animation: fadeIn 0.5s 1s 1 backwards;
 }
 
 .btn.btn-outline-white:hover {
   background: #fff;
   color: #2d71a1;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 
 .btn.btn-primary {
@@ -108,6 +130,15 @@ h1 {
 
 .img-resize {
   max-width: 100%;
+  animation: slideFromRight 1s 1;
+}
+@keyframes slideFromRight {
+  0% {
+    transform: translate(300%);
+  }
+  100% {
+    transform: translate(0%);
+  }
 }
 button {
   margin: auto;
