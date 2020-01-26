@@ -98,3 +98,7 @@ h1 {
     margin: 0 auto;
     height: auto;
 }
+
+.img-resize {
+    max-width: 100%;
+}
