@@ -109,9 +109,10 @@ h1 {
 }
 
 .background {
-  background: url(../img/new-bkg.jpg);
+  background: #4c8f2d;
 }
-
+/*url(../img/new-bkg.jpg)*/
+/*#4C8F2D*/
 .vertical-center {
   min-height: 100%; /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */

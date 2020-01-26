@@ -1,9 +1,7 @@
-@import "compass/css3";
-
-
+@import 'compass/css3';
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   line-height: 1.5;
 }
 p {
@@ -27,7 +25,7 @@ p {
   margin: 10px;
   align: center;
   width: 325px;
-  padding: .35rem;
+  padding: 0.35rem;
   table {
     border-collapse: collapse;
   }
@@ -47,11 +45,13 @@ p {
 .performance-facts__table {
   width: 100%;
   thead tr {
-    th, td {
+    th,
+    td {
       border: 0;
     }
   }
-  th, td {
+  th,
+  td {
     font-weight: normal;
     text-align: left;
     padding: 0.25rem 0;
@@ -68,7 +68,8 @@ p {
     border-top: 0;
   }
   .thick-row {
-    th, td {
+    th,
+    td {
       border-top-width: 12px;
     }
   }
@@ -91,7 +92,8 @@ p {
       text-align: left;
     }
   }
-  th, td {
+  th,
+  td {
     border: 0;
     padding: 0;
   }
@@ -104,7 +106,7 @@ p {
     &:last-child {
       text-align: left;
       &::before {
-        content: "•";
+        content: '•';
         font-weight: bold;
         margin: 0 0.25rem 0 0;
       }
@@ -114,9 +116,10 @@ p {
 .background {
   background: url(../img/new-bkg.jpg);
 }
-
+/*url(../img/new-bkg.jpg)*/
+/*#4C8F2D*/
 .vertical-center {
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100%; /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */
 
   display: flex;
@@ -124,9 +127,9 @@ p {
 }
 
 .img-resize {
-    max-width: 100%;
-    height: auto;
-    width: auto\9; /* ie8 */
+  max-width: 100%;
+  height: auto;
+  width: auto\9; /* ie8 */
 }
 
 .text-center {
