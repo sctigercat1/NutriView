@@ -8,5 +8,6 @@ urlpatterns = [
     path('analysis', views.analysis),
     path('snap', views.snap),
 	path('nutri', views.nutri),
-    path('index', views.index)
+    path('index', views.index),
+    path('nutriInfo', views.nutriInfo),
 ]
