@@ -1,28 +1,20 @@
+{% extends "base.html" %}
 {% load static %}
 
 <!DOCTYPE html>
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
+{% block "header" %}
+<link href="{% static 'css/style2.css' %}" rel="stylesheet">
+{% endblock %}
 
-    <title>Nutrition Information</title>
-    <meta name="description" content="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-
-    <link href="{% static 'css/style2.css' %}" rel="stylesheet">
-    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  </head>
-
-  <body class="background">
-
+{% block "content" %}
+<body class="background">
 
 <section class="performance-facts" style="background: white; margin: 0 auto;">
   <header class="performance-facts__header">
     <h1 class="performance-facts__title">Nutrition Facts</h1>
-    <p>Pizza --> {{ fdcIdOfFood }}
-    <p>Serving Size 1/2 cup (about 82g)
+      <p>Pizza</p>
+      <p>Serving Size 1/2 cup (about 82g)</p>
 
   </header>
   <table class="performance-facts__table">
@@ -45,7 +37,7 @@
       </tr>
       <tr class="thick-row">
         <td colspan="3" class="small-info">
-          <b align="right">% Daily Value*</b>
+            <p class="text-right"><b>% Daily Value*</b></p>
         </td>
       </tr>
       <tr>
@@ -299,12 +291,4 @@
   </p>
 
 </section>
-<!-- Vendor JS Files -->
-  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-
-
-
-
-</html>
+{% endblock %}
