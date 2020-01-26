@@ -173,15 +173,6 @@
           {% if info.sugars.value %}{{ info.sugars.value|floatformat:'0'}}{% else %}0{% endif %}g
         </th>
         <td>
-          <script>
-            function divide(){
-              var x = "{% if info.sugars.value %}{{ info.sugars.value|floatformat:'0'}}{% else %}0{% endif %}";
-              x = x / 38;
-              x = x * 100;
-              return Math.round(x);
-            }
-              document.write("<b>" + divide() + "%</b>" );
-          </script>
         </td>
       </tr>
       <tr class="thick-end">
