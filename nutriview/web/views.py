@@ -73,6 +73,10 @@ def root(request):
 def nutri(request):
     return render(request, "nutrition.html")
 
+
+def index(request):
+    return render(request, "index.html")
+
 def _parse_data_url(url):
 	scheme, data = url.split(":",1)
 	assert scheme == "data", "unsupported scheme: "+scheme
@@ -83,3 +87,7 @@ def _parse_data_url(url):
 		return binascii.a2b_base64(data), mediatype[:-7] or None
 	else:
 		return data, mediatype or None
+<<<<<<< HEAD
+=======
+
+>>>>>>> 77148dcff6d0cc9ff20e76454772c7736b55d5a1
