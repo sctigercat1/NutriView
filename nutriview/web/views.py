@@ -30,10 +30,13 @@ def nutriInfo(request, food):
     #return HttpResponse(json.dumps(response))
 
     # Parse data
-    labelNutrients = response['labelNutrients']
-    return render(request, "nutrition.html", {"info": labelNutrients, "fdcIdOfFood": fdcIdOfFood, \
-                    "food": food['description'].title(), "servingSize": round(response['servingSize']), \
-                    "servingSizeUnit": response['servingSizeUnit']})
+    if 'labelNutrients' in response:
+        labelNutrients = response['labelNutrients']
+        return render(request, "nutrition.html", {"info": labelNutrients, "fdcIdOfFood": fdcIdOfFood, \
+                        "food": food['description'].title(), "servingSize": round(response['servingSize']), \
+                        "servingSizeUnit": response['servingSizeUnit']})
+
+    return render(request, "error.html")
 
 def analysis(request):
     session = boto3.Session(
@@ -42,12 +45,14 @@ def analysis(request):
         region_name="us-east-2",
     )
 
+    # JS does not pad properly
     uri = request.POST['blob'] + '=='
     binary_uri = _parse_data_url(uri)[0]
 
     client = session.client('rekognition')
     response = client.detect_labels(Image={'Bytes': binary_uri})
 
+    # Begin parsing labels -- what the AI has viewed
     labels = response['Labels']
     foods = {}
     for item in labels:
@@ -59,7 +64,7 @@ def analysis(request):
     if len(foods) < 1:
         return render(request, "error.html")
 
-    final_food = max(foods, key=foods.get) # Get max confidence
+    final_food = max(foods, key=foods.get) # Get key of max confidence
     
     return nutriInfo(request, final_food)
 
@@ -76,15 +81,13 @@ def index(request):
 def error(request):
     return render(request, "error.html")
 
-def handler404(request, *args, **argv):
-    response = render(request, 'error.html', {},
-                                  context_instance=RequestContext(request))
+def handler404(request):
+    response = render(request, 'error.html')
     response.status_code = 404
     return response
 
-def handler500(request, *args, **argv):
-    response = render(request, 'error.html', {},
-                                  context_instance=RequestContext(request))
+def handler500(request):
+    response = render(request, 'error.html')
     response.status_code = 500
     return response
 
