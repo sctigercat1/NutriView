@@ -30,7 +30,7 @@ def root_old(request):
 def snap(request):
     return render(request, "snap.html")
 
-def nutriInfo(request)
+def nutriInfo(request):
     fda_endpoint = "https://api.nal.usda.gov/fdc/v1/search?api_key=" + settings.FDA_API_KEY
     for food in requests:
         data = json.dumps({'generalSearchInput': food}).encode()
@@ -87,7 +87,3 @@ def _parse_data_url(url):
 		return binascii.a2b_base64(data), mediatype[:-7] or None
 	else:
 		return data, mediatype or None
-<<<<<<< HEAD
-=======
-
->>>>>>> 77148dcff6d0cc9ff20e76454772c7736b55d5a1
