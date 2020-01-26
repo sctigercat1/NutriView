@@ -32,7 +32,7 @@ if SECRET_KEY == 'e#ml&(_#c*g)4lz!yc7evy+e9a!uem$(zwsw(g)iwe*gpoqr)-':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['35.243.165.164', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['nutriview.space', 'localhost', '127.0.0.1']
 
 
 # Application definition
