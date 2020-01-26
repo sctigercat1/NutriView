@@ -128,8 +128,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-import local_settings
+from local_settings import *
 
-AWS_SERVER_PUBLIC_KEY = local_settings.AWS_SERVER_PUBLIC_KEY
-AWS_SERVER_SECRET_KEY = local_settings.AWS_SERVER_SECRET_KEY
-FDA_API_KEY = local_settings.FDA_API_KEY
+# Namely: 
+#AWS_SERVER_PUBLIC_KEY = local_settings.AWS_SERVER_PUBLIC_KEY
+#AWS_SERVER_SECRET_KEY = local_settings.AWS_SERVER_SECRET_KEY
+#FDA_API_KEY = local_settings.FDA_API_KEY
