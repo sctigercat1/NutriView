@@ -5,27 +5,6 @@ from nutriview import settings
 import boto3, json, urllib.request, urllib.parse
 import binascii
 
-def root_old(request):
-    """
-
-    """
-    foods = ["Pizza"]
-
-    # POST request to FDA site
-    fda_endpoint = "https://api.nal.usda.gov/fdc/v1/search?api_key=" + settings.FDA_API_KEY
-
-    for food in foods:
-        #post_data = urllib.parse.urlencode({'generalSearchInput': food})
-        data = json.dumps({'generalSearchInput': food}).encode()
-        request = urllib.request.Request(fda_endpoint, data)
-        request.add_header('Content-Type', 'application/json')
-        with urllib.request.urlopen(request) as response:
-            return HttpResponse(response.read())
-            #print(f.read().decode('utf-8'))
-        #response = urllib.request.urlopen(url=fda_endpoint, data=post_data)
-
-    # return HttpResponse(json.dumps(foods))
-
 def snap(request):
     return render(request, "snap.html")
 
@@ -65,14 +44,13 @@ def analysis(request):
 
     client = session.client('rekognition')
     response = client.detect_labels(Image={'Bytes': binary_uri})
-    #return HttpResponse(json.dumps(response)) ###TEMP
 
     labels = response['Labels']
     foods = {}
     for item in labels:
         if item['Parents'] is not None:
             for parent in item['Parents']:
-                if parent['Name'] == 'Food' and item['Confidence'] > 75 and item['Name'] not in ('Fruit'):
+                if parent['Name'] == 'Food' and item['Confidence'] > 75 and item['Name'] not in ('Fruit', 'Produce'):
                     foods[item['Name']] = item['Confidence']
 
     if len(foods) < 1:
