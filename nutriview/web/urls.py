@@ -9,5 +9,4 @@ urlpatterns = [
     path('snap', views.snap),
 	path('nutri', views.nutri),
     path('index', views.index),
-    path('get_nutrition', views.get_nutrition)
 ]
