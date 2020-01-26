@@ -4,15 +4,19 @@
 <html lang="en" style="overflow-y: hidden;">
   <head>
     <meta charset="utf-8" />
+    <link rel='icon' href='favicon.ico' type='image/x-icon'/ >
     <title>NutriView</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
 
     <!-- Favicons -->
-    <link href="{% static 'img/favicon.png' %}" rel="icon" />
     <link
-      href="{% static 'img/apple-touch-icon.png' %}"
+      href="{% static 'static/img/Nutriview_trans_cropped.png' %}"
+      rel="icon"
+    />
+    <link
+      href="{% static 'static/img/Nutriview_trans_cropped.png' %}"
       rel="apple-touch-icon"
     />
 
@@ -40,14 +44,15 @@
         width: 100%;
       }
       #logo {
-        height: 30%;
-        width: 30%;
-        display: flex;
-        margin: auto auto;
-      }
-      #logo_img {
         height: 100%;
         width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #logo_img {
+        height: 30%;
+        width: 30%;
       }
     </style>
   </head>
