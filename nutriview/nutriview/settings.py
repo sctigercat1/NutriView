@@ -34,6 +34,9 @@ else:
 
 ALLOWED_HOSTS = ['nutriview.space', 'localhost', '127.0.0.1']
 
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 # Application definition
 

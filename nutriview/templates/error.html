@@ -1,26 +1,44 @@
 {% load static %}
+<html>
+  <head>
+    <link href="{% static 'css/style3.css' %}" rel="stylesheet">
+    <meta http-equiv = "refresh" content = "5; url = /" />
 
-<figure>
-  <link href="{% static 'css/style3.css' %}" rel="stylesheet">
-  <meta http-equiv = "refresh" content = "5; url = /" />
-	<div class="sad-mac"></div>
-	<figcaption>
-		<span class="sr-text">Error 404:</span>
-		<span class="e"></span>
-		<span class="r"></span>
-		<span class="r"></span>
-		<span class="o"></span>
-		<span class="r"></span>
-		<span class="_4"></span>
-		<span class="_0"></span>
-		<span class="_4"></span>
-		<span class="n"></span>
-		<span class="o"></span>
-		<span class="t"></span>
-		<span class="f"></span>
-		<span class="o"></span>
-		<span class="u"></span>
-		<span class="n"></span>
-		<span class="d"></span>
-	</figcaption>
-</figure>
+    {# Global site tag (gtag.js) - Google Analytics #}
+    {% if not debug %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157116189-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-157116189-1');
+    </script>
+    {% endif %}
+  </head>
+
+  <body>
+    <figure>
+        <div class="sad-mac"></div>
+        <figcaption>
+            <span class="sr-text">Error 404:</span>
+            <span class="e"></span>
+            <span class="r"></span>
+            <span class="r"></span>
+            <span class="o"></span>
+            <span class="r"></span>
+            <span class="_4"></span>
+            <span class="_0"></span>
+            <span class="_4"></span>
+            <span class="n"></span>
+            <span class="o"></span>
+            <span class="t"></span>
+            <span class="f"></span>
+            <span class="o"></span>
+            <span class="u"></span>
+            <span class="n"></span>
+            <span class="d"></span>
+        </figcaption>
+    </figure>
+  </body>
+</html>

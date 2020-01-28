@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <title>NutriView</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
     <!-- Favicons -->
     <link href="{% static 'img/favicon.ico' %}" rel="icon" />
     <link
@@ -102,6 +103,18 @@
     {% block "header" %}
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
     {% endblock %}
+
+    {# Global site tag (gtag.js) - Google Analytics #}
+    {% if not debug %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157116189-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-157116189-1');
+    </script>
+    {% endif %}
   </head>
 
   {% block "content" %}
